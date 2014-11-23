@@ -13,7 +13,7 @@ Region::Region()
 {
 }
 
-Region::Region(int pId, int pSuperRegion)
+Region::Region(const int& pId, const int& pSuperRegion)
 	: id(pId)
 	, nbNeighbors(0)
 	, superRegion(pSuperRegion)
@@ -25,16 +25,16 @@ Region::~Region()
 {
 }
 
-void Region::addNeighbors(int Neighbors)
+void Region::addNeighbor(const int& neighbor)
 {
-	neighbors.push_back(Neighbors);
+	neighbors.push_back(neighbor);
 }
 
-void Region::setArmies(int nbArmies)
+void Region::setArmies(const int& nbArmies)
 {
 	armies = nbArmies;
 }
-void Region::setOwner(std::string pOwner)
+void Region::setOwner(const std::string& pOwner)
 {
 	owner = pOwner;
 }
@@ -52,7 +52,7 @@ int Region::getSuperRegion()
 	return superRegion;
 }
 
-std::vector<int>& Region::getNeighbors()
+const std::vector<int>& Region::getNeighbors()
 {
 	return neighbors;
 }

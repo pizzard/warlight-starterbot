@@ -2,24 +2,25 @@
 #include "SuperRegion.h"
 
 SuperRegion::SuperRegion()
+	: reward(0)
 {
 }
 
-SuperRegion::SuperRegion(int pReward)
+SuperRegion::SuperRegion(const int& pReward)
+	: reward(pReward)
 {
-	reward = pReward;
 }
 
 SuperRegion::~SuperRegion()
 {
 }
 
-void SuperRegion::addRegion(int noRegion)
+void SuperRegion::addRegion(const int& region)
 {
-	regions.push_back(noRegion);
-	nbRegions++;
+	regions.push_back(region);
+
 }
-int SuperRegion::getNbRegions()
+size_t SuperRegion::size()
 {
 	return regions.size();
 }

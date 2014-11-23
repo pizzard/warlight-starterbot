@@ -41,8 +41,8 @@ void Bot::addRegion(const unsigned& noRegion, const unsigned& noSuperRegion)
 }
 void Bot::addNeighbors(const unsigned& noRegion, const unsigned& neighbors)
 {
-	regions[noRegion].addNeighbors(neighbors);
-	regions[neighbors].addNeighbors(noRegion);
+	regions[noRegion].addNeighbor(neighbors);
+	regions[neighbors].addNeighbor(noRegion);
 }
 
 void Bot::addSuperRegion(const unsigned& noSuperRegion, const int&reward)

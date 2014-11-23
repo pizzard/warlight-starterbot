@@ -9,16 +9,16 @@ class Region
 {
 public:
 	Region();
-	Region(int pId, int superRegion);
+	Region(const int& pId, const  int& superRegion);
 
 	virtual ~Region();
-	void addNeighbors(int Neighbors);
-	void setArmies(int nbArmies);
-	void setOwner(std::string owner);
+	void addNeighbor(const int& neighbor);
+	void setArmies(const int& nbArmies);
+	void setOwner(const std::string& owner);
 	int getArmies();
 	std::string getOwner();
 	int getSuperRegion();
-	std::vector<int>& getNeighbors();
+	const std::vector<int>& getNeighbors();
 
 private:
 	std::vector<int> neighbors;

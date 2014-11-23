@@ -11,15 +11,14 @@ class SuperRegion
 {
 public:
 	SuperRegion();
-	SuperRegion(int pReward);
+	SuperRegion(const int& pReward);
 
 	virtual ~SuperRegion();
-	void addRegion(int noRegion);
-	int getNbRegions();
+	void addRegion(const int& region);
+	size_t size();
 
 private:
 	std::vector<int> regions;
-	int nbRegions;
 	int reward;
 };
 
