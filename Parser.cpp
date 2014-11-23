@@ -21,22 +21,22 @@ void Parser::parseInput()
 	while (std::cin >> inputType)
 	{
 		if (inputType == "setup_map")
-			parseSetup_Map();
+			parseSetupMap();
 		else if (inputType == "pick_starting_regions")
-			parseStarting_Regions();
+			parseStartingRegions();
 		else if (inputType == "settings")
 			parseSettings();
 		else if (inputType == "update_map")
-			parseUpdate_Map();
+			parseUpdateMap();
 		else if (inputType == "opponent_moves")
-			parseOpponent_Moves();
+			parseOpponentMoves();
 		else if (inputType == "go")
 			parseGo();
 		theBot->executeAction();
 	}
 }
 
-void Parser::parseSetup_Map()
+void Parser::parseSetupMap()
 {
 #ifdef DEBUG_PRINT
 	cout <<"parseSetupMap\n";
@@ -44,13 +44,13 @@ void Parser::parseSetup_Map()
 	std::string setupType;
 	std::cin >> setupType;
 	if (setupType == "super_regions")
-		parseSuper_Regions();
+		parseSuperRegions();
 	if (setupType == "regions")
 		parseRegions();
 	if (setupType == "neighbors")
 		parseNeighbors();
 }
-void Parser::parseStarting_Regions()
+void Parser::parseStartingRegions()
 {
 #ifdef DEBUG_PRINT
 	cout << "parseStartingRegions\n";
@@ -97,7 +97,7 @@ void Parser::parseSettings()
 	}
 }
 
-void Parser::parseUpdate_Map()
+void Parser::parseUpdateMap()
 {
 #ifdef DEBUG_PRINT
 	cout <<"parseUpdate_Map\n";
@@ -113,7 +113,7 @@ void Parser::parseUpdate_Map()
 	}
 }
 
-void Parser::parseOpponent_Moves()
+void Parser::parseOpponentMoves()
 {
 
 #ifdef DEBUG_PRINT
@@ -147,7 +147,7 @@ void Parser::parseGo()
 	theBot->setPhase(phase);
 }
 
-void Parser::parseSuper_Regions()
+void Parser::parseSuperRegions()
 {
 	int super, reward;
 #ifdef DEBUG_PRINT
