@@ -8,6 +8,7 @@
 Bot::Bot()
 	: armiesLeft(0)
 	, parser(this)
+	, phase(NONE)
 {
 }
 
@@ -77,15 +78,15 @@ void Bot::startDelay(const int& /* delay */)
 {
 
 }
-void Bot::setPhase(const std::string& pPhase)
+void Bot::setPhase(const Bot::Phase pPhase)
 {
 	phase = pPhase;
 }
 void Bot::executeAction()
 {
-	if (phase == "")
+	if (phase == NONE)
 		return;
-	if (phase == "pickPreferredRegion")
+	if (phase == PICK_PREFERRED_REGION)
 	{
 		unsigned i, nbAns = 0;
 		for (i = 0; i < startingRegionsreceived.size() && nbAns < 6; i++)
@@ -101,16 +102,16 @@ void Bot::executeAction()
 			}
 		}
 	}
-	if (phase == "place_armies")
+	if (phase == Bot::PLACE_ARMIES)
 	{
 		std::cout << botName << " place_armies " << ownedRegions[0] << " " << armiesLeft << "\n";
 	}
-	if (phase == "attack/transfer")
+	if (phase == Bot::ATTACK_TRANSFER )
 	{
 		std::cout << "No moves\n";
 //          std::cout << botName << " attack/transfer " << from << " " << to << " "<< armiesMoved;
 	}
-	phase.clear();
+	phase = NONE;
 }
 
 void Bot::updateRegion(const unsigned& noRegion, const std::string& playerName, const int& nbArmies)

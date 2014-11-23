@@ -1,6 +1,7 @@
 //stl
 #include <iostream>
 #include <stdlib.h>
+#include <stdexcept>
 
 // project
 #include "Bot.h"
@@ -59,7 +60,7 @@ void Parser::parseStartingRegions()
 		if (std::cin.peek() == '\n')
 			break;
 	}
-	theBot->setPhase("pickPreferredRegion");
+	theBot->setPhase(Bot::PICK_PREFERRED_REGION);
 }
 
 void Parser::parseSettings()
@@ -127,7 +128,27 @@ void Parser::parseGo()
 	int delay;
 	std::cin >> phase >> delay;
 	theBot->startDelay(delay);
-	theBot->setPhase(phase);
+	if(phase ==  "place_armies")
+	{
+		theBot->setPhase(Bot::PLACE_ARMIES);
+		return;
+	}
+	if(phase ==   "attack/transfer")
+	{
+		theBot->setPhase(Bot::ATTACK_TRANSFER);
+		return;
+	}
+	if(phase == "find_borders")
+	{
+		theBot->setPhase(Bot::FIND_BORDERS);
+		return;
+	}
+	if(phase ==  "pick_preferred_region")
+	{
+		theBot->setPhase(Bot::PICK_PREFERRED_REGION);
+		return;
+	}
+	throw std::invalid_argument("Cannot handle " + phase + "correctly");
 }
 
 void Parser::parseSuperRegions()
@@ -167,7 +188,7 @@ void Parser::parseNeighbors()
 			break;
 	}
 	neighbors_flds.clear();
-	theBot->setPhase("findBorders");
+	theBot->setPhase(Bot::FIND_BORDERS);
 }
 
 std::vector<std::string> Parser::splitString(const std::string& string, const char& delimiter)

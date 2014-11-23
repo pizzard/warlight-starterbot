@@ -13,7 +13,16 @@
 
 class Bot
 {
+
 public:
+	enum Phase {
+		NONE,
+		PICK_PREFERRED_REGION,
+		FIND_BORDERS,
+		PLACE_ARMIES,
+		ATTACK_TRANSFER
+	};
+
 	Bot();
 	virtual ~Bot();
 
@@ -31,7 +40,9 @@ public:
 	void moveArmies(const unsigned& noRegion, const unsigned& toRegion, const int& nbArmies);
 	void addStartingRegion(const unsigned& noRegion);
 	void startDelay(const int& delay);
-	void setPhase(const std::string& pPhase);
+
+	void setPhase(const Phase phase);
+
 	void executeAction();
 	void updateRegion(const unsigned& noRegion, const std::string& playerName, const int& nbArmies);
 	void resetRegionsOwned();
@@ -46,7 +57,7 @@ private:
 	std::vector<int> ownedRegions;
 	int armiesLeft;
 	Parser parser;
-	std::string phase;
+	Phase phase;
 };
 
 #endif // BOT_H
