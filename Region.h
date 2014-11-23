@@ -19,6 +19,7 @@ public:
 	std::string getOwner();
 	int getSuperRegion();
 	std::vector<int>& getNeighbors();
+
 private:
 	std::vector<int> neighbors;
 	int id;

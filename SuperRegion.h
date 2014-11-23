@@ -9,10 +9,6 @@
 
 class SuperRegion
 {
-private:
-	std::vector<int> regions;
-	int nbRegions;
-	int reward;
 public:
 	SuperRegion();
 	SuperRegion(int pReward);
@@ -21,6 +17,10 @@ public:
 	void addRegion(int noRegion);
 	int getNbRegions();
 
+private:
+	std::vector<int> regions;
+	int nbRegions;
+	int reward;
 };
 
 #endif // SUPERREGION_H_INCLUDED
