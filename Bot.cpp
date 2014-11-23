@@ -74,7 +74,7 @@ void Bot::addStartingRegion(unsigned noRegion)
      startingRegionsreceived.push_back(noRegion);
 }
 
-void Bot::startDelay(int delay)
+void Bot::startDelay(int /* delay */)
 {
 
 }
