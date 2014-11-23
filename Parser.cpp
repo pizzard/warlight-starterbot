@@ -38,9 +38,6 @@ void Parser::parseInput()
 
 void Parser::parseSetupMap()
 {
-#ifdef DEBUG_PRINT
-	cout <<"parseSetupMap\n";
-#endif // DEBUG_PRINT
 	std::string setupType;
 	std::cin >> setupType;
 	if (setupType == "super_regions")
@@ -52,9 +49,6 @@ void Parser::parseSetupMap()
 }
 void Parser::parseStartingRegions()
 {
-#ifdef DEBUG_PRINT
-	cout << "parseStartingRegions\n";
-#endif // DEBUG_PRINT
 	int region;
 	int delay;
 	std::cin >> delay;
@@ -70,9 +64,6 @@ void Parser::parseStartingRegions()
 
 void Parser::parseSettings()
 {
-#ifdef DEBUG_PRINT
-	cout << "parseSettings\n";
-#endif // DEBUG_PRINT
 	std::string settingType;
 	std::string bot_name;
 	int nbArmies;
@@ -91,17 +82,12 @@ void Parser::parseSettings()
 	{
 		std::cin >> nbArmies;
 		theBot->setArmiesLeft(nbArmies);
-#ifdef DEBUG_PRINT
-		cout << "settings starting_armies " << nbArmies << "\n";
-#endif // DEBUG_PRINT
+
 	}
 }
 
 void Parser::parseUpdateMap()
 {
-#ifdef DEBUG_PRINT
-	cout <<"parseUpdate_Map\n";
-#endif // DEBUG_PRINT
 	std::string playerName;
 	int noRegion, nbArmies;
 	theBot->resetRegionsOwned();
@@ -116,9 +102,6 @@ void Parser::parseUpdateMap()
 void Parser::parseOpponentMoves()
 {
 
-#ifdef DEBUG_PRINT
-	cout << "parseOpponent_Moves\n";
-#endif // DEBUG_PRINT
 	std::string playerName, action;
 	int noRegion, nbArmies, toRegion;
 	while (std::cin.peek() != '\n' && std::cin >> playerName >> action)
@@ -150,9 +133,6 @@ void Parser::parseGo()
 void Parser::parseSuperRegions()
 {
 	int super, reward;
-#ifdef DEBUG_PRINT
-	std::cout << "parseSuperRegions\n";
-#endif // DEBUG_PRINT
 	while (std::cin >> super >> reward)
 	{
 		theBot->addSuperRegion(super, reward);
@@ -164,9 +144,6 @@ void Parser::parseSuperRegions()
 void Parser::parseRegions()
 {
 	int super, region;
-#ifdef DEBUG_PRINT
-	std::cout << "parseRegions\n";
-#endif // DEBUG_PRINT
 	while (std::cin >> region >> super)
 	{
 		theBot->addRegion(region, super);
@@ -177,9 +154,7 @@ void Parser::parseRegions()
 
 void Parser::parseNeighbors()
 {
-#ifdef DEBUG_PRINT
-	std::cout << "parseNeighbors\n";
-#endif // DEBUG_PRINT
+
 	int region;
 	std::string neighbors;
 	std::vector<std::string> neighbors_flds;
@@ -199,8 +174,7 @@ std::vector<std::string> Parser::splitString(const std::string& string, const ch
 {
 	std::vector<std::string> fields;
 	std::string buf = "";
-	unsigned i = 0;
-	while (i < string.length())
+	for(size_t i = 0; i < string.size(); ++i)
 	{
 		if (string[i] != delimiter)
 			buf += string[i];
@@ -209,7 +183,6 @@ std::vector<std::string> Parser::splitString(const std::string& string, const ch
 			fields.push_back(buf);
 			buf = "";
 		}
-		i++;
 	}
 	if (!buf.empty())
 		fields.push_back(buf);
