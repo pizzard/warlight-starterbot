@@ -1,7 +1,10 @@
-#include "Region.h"
+//stl
 #include <stdio.h>
 #include <iostream>
+//project
+#include "Region.h"
 #include "SuperRegion.h"
+
 Region::Region()
 {
 
@@ -9,8 +12,8 @@ Region::Region()
 
 Region::Region(int pId, int pSuperRegion)
 {
-    this->superRegion = pSuperRegion;
-    id = pId;
+	this->superRegion = pSuperRegion;
+	id = pId;
 }
 
 Region::~Region()
@@ -19,33 +22,33 @@ Region::~Region()
 }
 void Region::addNeighbors(int Neighbors)
 {
-    neighbors.push_back(Neighbors);
+	neighbors.push_back(Neighbors);
 }
 
 void Region::setArmies(int nbArmies)
 {
-    armies =nbArmies;
+	armies = nbArmies;
 }
 void Region::setOwner(std::string pOwner)
 {
-    owner = pOwner;
+	owner = pOwner;
 }
 int Region::getArmies()
 {
-    return armies;
+	return armies;
 }
 std::string Region::getOwner()
 {
-    return owner;
+	return owner;
 }
 
 int Region::getSuperRegion()
 {
-    return superRegion;
+	return superRegion;
 }
 
 std::vector<int>& Region::getNeighbors()
 {
-    return neighbors;
+	return neighbors;
 }
 
