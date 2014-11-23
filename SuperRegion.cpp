@@ -2,12 +2,10 @@
 
 SuperRegion::SuperRegion()
 {
-    //ctor
 }
 
 SuperRegion::~SuperRegion()
 {
-    //dtor
 }
 
 SuperRegion::SuperRegion(int pReward)

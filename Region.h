@@ -2,7 +2,6 @@
 #define REGION_H
 #include <vector>
 #include <string>
-using namespace std;
 class Region
 {
 
@@ -10,7 +9,7 @@ class Region
     int id;
     int nbNeighbors;
     int superRegion;
-    string owner;
+    std::string owner;
     int armies;
     public:
         Region();
@@ -18,11 +17,11 @@ class Region
         virtual ~Region();
         void addNeighbors(int Neighbors);
         void setArmies(int nbArmies);
-        void setOwner(string owner);
+        void setOwner(std::string owner);
         int getArmies();
-        string getOwner();
+        std:: string getOwner();
         int getSuperRegion();
-        vector<int>& getNeighbors();
+        std::vector<int>& getNeighbors();
     protected:
     private:
 };

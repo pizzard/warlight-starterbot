@@ -10,19 +10,19 @@
 #include "Parser.h"
 #include "Region.h"
 #include "SuperRegion.h"
-using namespace std;
+
 class Bot
 {
-    ifstream in;
-    vector<Region> regions;
-    vector<SuperRegion> superRegions;
-    string botName;
-    string opponentBotName;
-    vector<int> startingRegionsreceived;
-    vector<int> ownedRegions;
+    std::ifstream in;
+    std::vector<Region> regions;
+    std::vector<SuperRegion> superRegions;
+    std::string botName;
+    std::string opponentBotName;
+    std::vector<int> startingRegionsreceived;
+    std::vector<int> ownedRegions;
     int armiesLeft;
     Parser parser;
-    string phase;
+    std::string phase;
     public:
         Bot();
         virtual ~Bot();
@@ -34,16 +34,16 @@ class Bot
     void addRegion(unsigned noRegion, unsigned noSuperRegion);
     void addSuperRegion(unsigned noSuperRegion, int reward);
     void addNeighbors(unsigned noRegion, unsigned Neighbors);
-    void setBotName(string name);
-    void setOpponentBotName(string name);
+    void setBotName(std::string name);
+    void setOpponentBotName(std::string name);
     void setArmiesLeft(int nbArmies);
     void addArmies(unsigned noRegion,int nbArmies);
     void moveArmies(unsigned noRegion,unsigned toRegion,int nbArmies);
     void addStartingRegion(unsigned noRegion);
     void startDelay(int delay);
-    void setPhase(string pPhase);
+    void setPhase(std::string pPhase);
     void executeAction();
-    void updateRegion(unsigned noRegion, string playerName, int nbArmies);
+    void updateRegion(unsigned noRegion, std::string playerName, int nbArmies);
     void resetRegionsOwned();
 
     private:

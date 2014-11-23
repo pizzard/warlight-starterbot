@@ -4,7 +4,6 @@
 
 #include <string>
 #include <vector>
-using namespace std;
 class Bot;
 class Parser
 {
@@ -26,7 +25,7 @@ class Parser
         void parseNeighbors();
     protected:
     private:
-        vector<string>& splitString(string String, vector<string>& flds, char delim);
+        std::vector<std::string>& splitString(std::string String, std::vector<std::string>& flds, char delim);
 };
 
 #endif // PARSER_H_INCLUDED

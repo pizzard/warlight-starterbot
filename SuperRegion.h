@@ -2,7 +2,6 @@
 #define SUPERREGION_H_INCLUDED
 #include <vector>
 #include "Region.h"
-using namespace std;
 class SuperRegion
 {
 

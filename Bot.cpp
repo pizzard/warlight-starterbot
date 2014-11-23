@@ -3,16 +3,13 @@
 #include "Bot.h"
 
 
-
 Bot::Bot()
 {
-   // printf("ctor\n");
 }
 
 Bot::~Bot()
 {
-     //printf("dtor\n");
-    //dtor
+
 }
 
 void Bot::playGame()
@@ -55,11 +52,11 @@ void Bot::addSuperRegion(unsigned noSuperRegion, int reward)
     superRegions[noSuperRegion]  = SuperRegion(reward);
 }
 
-void Bot::setBotName(string name)
+void Bot::setBotName(std::string name)
 {
     botName = name;
 }
-void Bot::setOpponentBotName(string name)
+void Bot::setOpponentBotName(std::string name)
 {
     opponentBotName = name;
 }
@@ -78,7 +75,7 @@ void Bot::startDelay(int /* delay */)
 {
 
 }
-void Bot::setPhase(string pPhase)
+void Bot::setPhase(std::string pPhase)
 {
     phase=pPhase;
 }
@@ -91,30 +88,30 @@ void Bot::executeAction()
         unsigned i,nbAns=0;
         for (i = 0; i< startingRegionsreceived.size() && nbAns<6; i++)
         {
-            cout << startingRegionsreceived[i];
+        	std::cout << startingRegionsreceived[i];
             nbAns++;
             if (nbAns < 6)
-                cout << " ";
+            	std::cout << " ";
             else
             {
-                cout << "\n";
+            	std:: cout << "\n";
                 break;
             }
         }
     }
     if (phase == "place_armies")
     {
-        cout << botName << " place_armies " << ownedRegions[0] << " " << armiesLeft <<"\n";
+    	std::cout << botName << " place_armies " << ownedRegions[0] << " " << armiesLeft <<"\n";
     }
     if (phase == "attack/transfer")
     {
-            cout << "No moves\n" ;
-//          cout << botName << " attack/transfer " << from << " " << to << " "<< armiesMoved;
+    		std::cout << "No moves\n" ;
+//          std::cout << botName << " attack/transfer " << from << " " << to << " "<< armiesMoved;
     }
     phase.clear();
 }
 
-void Bot::updateRegion(unsigned noRegion, string playerName, int nbArmies)
+void Bot::updateRegion(unsigned noRegion, std::string playerName, int nbArmies)
 {
     regions[noRegion].setArmies(nbArmies);
     regions[noRegion].setOwner(playerName);
