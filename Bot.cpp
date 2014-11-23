@@ -6,6 +6,8 @@
 #include "Bot.h"
 
 Bot::Bot()
+	: armiesLeft(0)
+	, parser(this)
 {
 }
 
@@ -16,8 +18,6 @@ Bot::~Bot()
 
 void Bot::playGame()
 {
-
-	parser.initParser(this);
 	parser.parseInput();
 }    //plays a single game of Warlight
 

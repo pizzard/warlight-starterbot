@@ -6,20 +6,25 @@
 #include "SuperRegion.h"
 
 Region::Region()
+	: id(0)
+	, nbNeighbors(0)
+	, superRegion(0)
+	, armies(0)
 {
-
 }
 
 Region::Region(int pId, int pSuperRegion)
+	: id(pId)
+	, nbNeighbors(0)
+	, superRegion(pSuperRegion)
+	, armies(0)
 {
-	this->superRegion = pSuperRegion;
-	id = pId;
 }
 
 Region::~Region()
 {
-
 }
+
 void Region::addNeighbors(int Neighbors)
 {
 	neighbors.push_back(Neighbors);

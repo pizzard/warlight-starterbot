@@ -6,17 +6,13 @@
 #include "Bot.h"
 #include "Parser.h"
 
-Parser::Parser()
+Parser::Parser(Bot* bot)
+	:theBot(bot)
 {
 }
 
 Parser::~Parser()
 {
-}
-
-void Parser::initParser(Bot* bot)
-{
-	theBot = bot;
 }
 
 void Parser::parseInput()

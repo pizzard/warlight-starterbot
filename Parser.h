@@ -11,10 +11,9 @@ class Bot;
 class Parser
 {
 public:
-	Parser();
+	Parser(Bot* bot);
 	virtual ~Parser();
 
-	void initParser(Bot* bot);
 	void parseInput();
 	void parseSetup_Map();
 	void parseStarting_Regions();
