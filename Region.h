@@ -10,6 +10,7 @@ class Region
 public:
 	Region();
 	Region(int pId, int superRegion);
+
 	virtual ~Region();
 	void addNeighbors(int Neighbors);
 	void setArmies(int nbArmies);
