@@ -26,7 +26,7 @@ public:
 	void parseNeighbors();
 
 private:
-	std::vector<std::string>& splitString(std::string String, std::vector<std::string>& flds, char delim);
+	std::vector<std::string> splitString(const std::string& string, const char& delimiter);
 
 	Bot* theBot;
 

@@ -30,30 +30,8 @@ void Region::addNeighbor(const int& neighbor)
 	neighbors.push_back(neighbor);
 }
 
-void Region::setArmies(const int& nbArmies)
+int Region::getNeighbor(const size_t& index)
 {
-	armies = nbArmies;
-}
-void Region::setOwner(const std::string& pOwner)
-{
-	owner = pOwner;
-}
-int Region::getArmies()
-{
-	return armies;
-}
-std::string Region::getOwner()
-{
-	return owner;
-}
-
-int Region::getSuperRegion()
-{
-	return superRegion;
-}
-
-const std::vector<int>& Region::getNeighbors()
-{
-	return neighbors;
+	return neighbors.at(index);
 }
 

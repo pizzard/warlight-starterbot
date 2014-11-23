@@ -185,7 +185,7 @@ void Parser::parseNeighbors()
 	std::vector<std::string> neighbors_flds;
 	while (std::cin >> region >> neighbors)
 	{
-		neighbors_flds = splitString(neighbors, neighbors_flds, ',');
+		neighbors_flds = splitString(neighbors, ',');
 		for (unsigned i = 0; i < neighbors_flds.size(); i++)
 			theBot->addNeighbors(region, atoi(neighbors_flds[i].c_str()));
 		if (std::cin.peek() == '\n')
@@ -195,25 +195,24 @@ void Parser::parseNeighbors()
 	theBot->setPhase("findBorders");
 }
 
-std::vector<std::string>& Parser::splitString(std::string String, std::vector<std::string>& flds, char delim)
+std::vector<std::string> Parser::splitString(const std::string& string, const char& delimiter)
 {
-	if (!flds.empty())
-		flds.clear();
+	std::vector<std::string> fields;
 	std::string buf = "";
 	unsigned i = 0;
-	while (i < String.length())
+	while (i < string.length())
 	{
-		if (String[i] != delim)
-			buf += String[i];
+		if (string[i] != delimiter)
+			buf += string[i];
 		else
 		{
-			flds.push_back(buf);
+			fields.push_back(buf);
 			buf = "";
 		}
 		i++;
 	}
 	if (!buf.empty())
-		flds.push_back(buf);
-	return flds;
+		fields.push_back(buf);
+	return fields;
 }
 

@@ -20,7 +20,3 @@ void SuperRegion::addRegion(const int& region)
 	regions.push_back(region);
 
 }
-size_t SuperRegion::size()
-{
-	return regions.size();
-}

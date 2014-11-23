@@ -15,7 +15,7 @@ public:
 
 	virtual ~SuperRegion();
 	void addRegion(const int& region);
-	size_t size();
+	size_t size() { return regions.size(); }
 
 private:
 	std::vector<int> regions;
