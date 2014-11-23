@@ -21,19 +21,19 @@ public:
 
 	void makeMoves();   //makes moves for a single turn
 	void endTurn();     //indicates to the engine that it has made its moves
-	void addRegion(unsigned noRegion, unsigned noSuperRegion);
-	void addSuperRegion(unsigned noSuperRegion, int reward);
-	void addNeighbors(unsigned noRegion, unsigned Neighbors);
-	void setBotName(std::string name);
-	void setOpponentBotName(std::string name);
-	void setArmiesLeft(int nbArmies);
-	void addArmies(unsigned noRegion, int nbArmies);
-	void moveArmies(unsigned noRegion, unsigned toRegion, int nbArmies);
-	void addStartingRegion(unsigned noRegion);
-	void startDelay(int delay);
-	void setPhase(std::string pPhase);
+	void addRegion(const unsigned& noRegion, const unsigned& noSuperRegion);
+	void addSuperRegion(const unsigned& noSuperRegion, const int& reward);
+	void addNeighbors(const unsigned& noRegion, const unsigned& Neighbors);
+	void setBotName(const std::string& name);
+	void setOpponentBotName(const std::string& name);
+	void setArmiesLeft(const int& nbArmies);
+	void addArmies(const unsigned& noRegion, const int& nbArmies);
+	void moveArmies(const unsigned& noRegion, const unsigned& toRegion, const int& nbArmies);
+	void addStartingRegion(const unsigned& noRegion);
+	void startDelay(const int& delay);
+	void setPhase(const std::string& pPhase);
 	void executeAction();
-	void updateRegion(unsigned noRegion, std::string playerName, int nbArmies);
+	void updateRegion(const unsigned& noRegion, const std::string& playerName, const int& nbArmies);
 	void resetRegionsOwned();
 
 private:
