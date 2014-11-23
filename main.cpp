@@ -1,13 +1,25 @@
 #include <iostream>
+#include <exception>
 #include "Bot.h"
 
-using namespace std;
 
 int main(int /*argc*/, char ** /*argv[] */)
 {
-    cout.sync_with_stdio(0);
+    std::cout.sync_with_stdio(false);
 
-    Bot bot;
-    bot.playGame();
+#ifndef STARTERBOT_DEBUG
+    try
+    {
+#endif
+		Bot bot;
+		bot.playGame();
+#ifndef STARTERBOT_DEBUG
+    }
+    catch(std::exception& ex)
+    {
+    	std::cerr << "Exception:" << ex.what() << std::endl;
+    	return 1;
+    }
+#endif
     return 0;
 }

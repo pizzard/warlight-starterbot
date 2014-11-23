@@ -6,7 +6,7 @@ TEMPLATE = app
 TARGET = starterbot
 INCLUDEPATH += .
 CONFIG += c++11
-
+QMAKE_CXXFLAGS_DEBUG +=  -DSTARTERBOT_DEBUG
 
 # Input
 HEADERS += Bot.h Parser.h Region.h SuperRegion.h
