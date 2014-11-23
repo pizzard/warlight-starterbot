@@ -5,7 +5,10 @@
 TEMPLATE = app
 TARGET = starterbot
 INCLUDEPATH += .
+CONFIG += c++11
+
 
 # Input
 HEADERS += Bot.h Parser.h Region.h SuperRegion.h
 SOURCES += Bot.cpp main.cpp Parser.cpp Region.cpp SuperRegion.cpp
+
