@@ -20,16 +20,16 @@ Bot::~Bot()
 void Bot::playGame()
 {
 	parser.parseInput();
-}    //plays a single game of Warlight
+}
 
 void Bot::makeMoves()
 {
 
-}   //makes moves for a single turn
+}
 void Bot::endTurn()
 {
 
-}     //indicates to the engine that it has made its move
+}
 
 void Bot::addRegion(const unsigned& noRegion, const unsigned& noSuperRegion)
 {
