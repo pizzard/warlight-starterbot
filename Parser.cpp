@@ -23,7 +23,7 @@ void Parser::parseInput()
 	{
 		if (inputType == "setup_map")
 			parseSetupMap();
-		else if (inputType == "pick_starting_regions")
+        else if (inputType == "pick_starting_region")
 			parseStartingRegions();
 		else if (inputType == "settings")
 			parseSettings();
@@ -43,10 +43,12 @@ void Parser::parseSetupMap()
 	std::cin >> setupType;
 	if (setupType == "super_regions")
 		parseSuperRegions();
-	if (setupType == "regions")
+    else if (setupType == "regions")
 		parseRegions();
-	if (setupType == "neighbors")
+    else if (setupType == "neighbors")
 		parseNeighbors();
+    else if (setupType == "wastelands")
+        parseWastelands();
 }
 void Parser::parseStartingRegions()
 {
@@ -54,6 +56,7 @@ void Parser::parseStartingRegions()
 	int delay;
 	std::cin >> delay;
 	theBot->startDelay(delay);
+    theBot->clearStartingRegions();
 	while (std::cin >> region)
 	{
 		theBot->addStartingRegion(region);
@@ -66,31 +69,50 @@ void Parser::parseStartingRegions()
 void Parser::parseSettings()
 {
 	std::string settingType;
-	std::string bot_name;
-	int nbArmies;
 	std::cin >> settingType;
 	if (settingType == "your_bot")
 	{
+        std::string bot_name;
 		std::cin >> bot_name;
 		theBot->setBotName(bot_name);
 	}
-	if (settingType == "opponent_bot")
+    else if (settingType == "opponent_bot")
 	{
+        std::string bot_name;
 		std::cin >> bot_name;
 		theBot->setOpponentBotName(bot_name);
 	}
-	if (settingType == "starting_armies")
+    else if (settingType == "starting_armies")
 	{
+        int nbArmies;
 		std::cin >> nbArmies;
 		theBot->setArmiesLeft(nbArmies);
-
 	}
+    else if (settingType == "timebank")
+    {
+        int timebank;
+        std::cin >> timebank;
+        theBot->setTimebank(timebank);
+    }
+    else if (settingType == "time_per_move")
+    {
+        int timePerMove;
+        std::cin >> timePerMove;
+        theBot->setTimePerMove(timePerMove);
+    }
+    else if (settingType == "max_rounds")
+    {
+        int maxRounds;
+        std::cin >> maxRounds;
+        theBot->setMaxRounds(maxRounds);
+    }
 }
 
 void Parser::parseUpdateMap()
 {
 	std::string playerName;
-	int noRegion, nbArmies;
+    unsigned noRegion;
+    int nbArmies;
 	theBot->resetRegionsOwned();
 	while (std::cin >> noRegion >> playerName >> nbArmies)
 	{
@@ -104,18 +126,19 @@ void Parser::parseOpponentMoves()
 {
 
 	std::string playerName, action;
-	int noRegion, nbArmies, toRegion;
+    unsigned noRegion, toRegion;
+    int nbArmies;
 	while (std::cin.peek() != '\n' && std::cin >> playerName >> action)
 	{
 		if (action == "place_armies")
 		{
 			std::cin >> noRegion >> nbArmies;
-			theBot->addArmies(noRegion, nbArmies);
+            theBot->opponentPlacement(noRegion, nbArmies);
 		}
 		if (action == "attack/transfer")
 		{
 			std::cin >> noRegion >> toRegion >> nbArmies;
-			theBot->moveArmies(noRegion, toRegion, nbArmies);
+            theBot->opponentMovement(noRegion, toRegion, nbArmies);
 		}
 		if (std::cin.peek() == '\n')
 			break;
@@ -153,7 +176,8 @@ void Parser::parseGo()
 
 void Parser::parseSuperRegions()
 {
-	int super, reward;
+    unsigned super;
+    int reward;
 	while (std::cin >> super >> reward)
 	{
 		theBot->addSuperRegion(super, reward);
@@ -164,7 +188,7 @@ void Parser::parseSuperRegions()
 
 void Parser::parseRegions()
 {
-	int super, region;
+    unsigned super, region;
 	while (std::cin >> region >> super)
 	{
 		theBot->addRegion(region, super);
@@ -176,7 +200,7 @@ void Parser::parseRegions()
 void Parser::parseNeighbors()
 {
 
-	int region;
+    unsigned region;
 	std::string neighbors;
 	std::vector<std::string> neighbors_flds;
 	while (std::cin >> region >> neighbors)
@@ -189,6 +213,17 @@ void Parser::parseNeighbors()
 	}
 	neighbors_flds.clear();
 	theBot->setPhase(Bot::FIND_BORDERS);
+}
+
+void Parser::parseWastelands()
+{
+    unsigned region;
+    while(std::cin >> region)
+    {
+        theBot->addWasteland(region);
+        if (std::cin.peek()== '\n')
+            break;
+    }
 }
 
 std::vector<std::string> Parser::splitString(const std::string& string, const char& delimiter)
