@@ -24,6 +24,7 @@ public:
 	void parseSuperRegions();
 	void parseRegions();
 	void parseNeighbors();
+    void parseWastelands();
 
 private:
 	std::vector<std::string> splitString(const std::string& string, const char& delimiter);
