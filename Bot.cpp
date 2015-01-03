@@ -30,7 +30,7 @@ void Bot::makeMoves()
     //  std::cout << botName << " attack/transfer " << from << " " << to << " "<< armiesMoved;
     /// When outputting multiple moves they must be seperated by a comma
     std::vector<std::string> moves;
-    for(int j = 0; j < ownedRegions.size(); ++j)
+    for(size_t j = 0; j < ownedRegions.size(); ++j)
     {
         std::stringstream move;
         int i = ownedRegions[j];
@@ -41,8 +41,9 @@ void Bot::makeMoves()
         moves.push_back(move.str());
     }
 
+    // TODO: use boost::join here as soon the server allows it
     std::stringstream finalMoves;
-    for(int i = 0; i < moves.size(); ++i)
+    for(size_t i = 0; i < moves.size(); ++i)
     {
         finalMoves << moves[i];
         if(i + 1 == moves.size())
@@ -119,18 +120,29 @@ void Bot::addStartingRegion(const unsigned& noRegion)
     startingRegionsreceived.push_back(noRegion);
 }
 
-void Bot::opponentPlacement(const unsigned &noRegion, const int &nbArmies)
+void Bot::opponentPlacement(const unsigned & noRegion, const int & nbArmies)
 {
-    // STUB
+	// suppress unused variable warnings
+	(void)noRegion;
+	(void)nbArmies;
+
+    // TODO: STUB
 }
 void Bot::opponentMovement(const unsigned &noRegion, const unsigned &toRegion, const int &nbArmies)
 {
-    // STUB
+	// suppress unused variable warnings
+	(void)noRegion;
+	(void)toRegion;
+	(void)nbArmies;
+
+    // TODO: STUB
 }
 
-void Bot::startDelay(const int& /* delay */)
+void Bot::startDelay(const int& delay)
 {
-    // STUB
+	// suppress unused variable warnings
+	(void)delay;
+    // TODO: STUB
 }
 void Bot::setPhase(const Bot::Phase pPhase)
 {
