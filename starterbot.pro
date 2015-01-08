@@ -5,9 +5,23 @@
 QT -= core gui
 TEMPLATE = app
 TARGET = starterbot
-INCLUDEPATH += .
+INCLUDEPATH = .
 CONFIG += c++11
 QMAKE_CXXFLAGS_DEBUG +=  -DSTARTERBOT_DEBUG
+
+# add tagret to zip your bot
+zip.target = zip
+zip.commands = rm -f bot.zip && mkdir -p target \
+	&& cp -r $$PWD/*.h target/ \
+	&& cp -r $$PWD/*.cpp  target/ \
+	&& cp -r $$PWD/3rdparty/ target/ \
+	&& cd target \
+	&& zip -r ../bot.zip ./* \
+	&& cd .. \
+	&& rm -r target
+zip.depends = starterbot
+
+QMAKE_EXTRA_TARGETS += zip
 
 # Input
 SOURCES += Bot.cpp main.cpp Parser.cpp Region.cpp SuperRegion.cpp

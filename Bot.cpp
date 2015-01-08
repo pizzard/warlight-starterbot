@@ -5,6 +5,10 @@
 //project
 #include "Bot.h"
 
+//tools
+#include "tools/StringManipulation.h"
+
+
 Bot::Bot()
 	: armiesLeft(0)
 	, timebank(0)
@@ -44,21 +48,7 @@ void Bot::makeMoves()
         moves.push_back(move.str());
     }
 
-    // TODO: use boost::join here as soon the server allows it
-    std::stringstream finalMoves;
-    for(size_t i = 0; i < moves.size(); ++i)
-    {
-        finalMoves << moves[i];
-        if(i + 1 == moves.size())
-        {
-            finalMoves << std::endl;
-        }
-        else
-        {
-            finalMoves << ",";
-        }
-    }
-    std::cout << finalMoves.str();
+    std::cout << string::join(moves);
 }
 
 void Bot::addRegion(const unsigned& noRegion, const unsigned& noSuperRegion)

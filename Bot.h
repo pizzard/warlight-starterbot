@@ -13,7 +13,10 @@
 #include "Region.h"
 #include "SuperRegion.h"
 
-class Bot
+// tools
+#include "tools/noncopyable.hpp"
+
+class Bot : boost::noncopyable
 {
 
 public:
