@@ -6,7 +6,12 @@
 // project
 #include "Bot.h"
 #include "Parser.h"
+#include "SuperRegion.h"
 
+//3rdparty
+#define BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
+#include <3rdparty/boost/algorithm/string/split.hpp>
+#include <3rdparty/boost/algorithm/string/classification.hpp>
 Parser::Parser(Bot* bot)
 	:theBot(bot)
 {
@@ -205,7 +210,7 @@ void Parser::parseNeighbors()
 	std::vector<std::string> neighbors_flds;
 	while (std::cin >> region >> neighbors)
 	{
-		neighbors_flds = splitString(neighbors, ',');
+		boost::algorithm::split(neighbors_flds, neighbors, boost::algorithm::is_any_of(","));
 		for (unsigned i = 0; i < neighbors_flds.size(); i++)
 			theBot->addNeighbors(region, atoi(neighbors_flds[i].c_str()));
 		if (std::cin.peek() == '\n')
@@ -225,23 +230,3 @@ void Parser::parseWastelands()
             break;
     }
 }
-
-std::vector<std::string> Parser::splitString(const std::string& string, const char& delimiter)
-{
-	std::vector<std::string> fields;
-	std::string buf = "";
-	for(size_t i = 0; i < string.size(); ++i)
-	{
-		if (string[i] != delimiter)
-			buf += string[i];
-		else
-		{
-			fields.push_back(buf);
-			buf = "";
-		}
-	}
-	if (!buf.empty())
-		fields.push_back(buf);
-	return fields;
-}
-

@@ -6,9 +6,13 @@
 #include <string>
 #include <vector>
 
+// 3rdparty
+#include <3rdparty/boost/noncopyable.hpp>
+
+
 class Bot;
 
-class Parser
+class Parser : boost::noncopyable
 {
 public:
 	Parser(Bot* bot);
@@ -27,8 +31,7 @@ public:
     void parseWastelands();
 
 private:
-	std::vector<std::string> splitString(const std::string& string, const char& delimiter);
-
+    Parser();
 	Bot* theBot;
 
 };

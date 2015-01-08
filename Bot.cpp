@@ -5,6 +5,10 @@
 //project
 #include "Bot.h"
 
+//3rdparty
+#define BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
+#include <3rdparty/boost/algorithm/string/join.hpp>
+
 Bot::Bot()
 	: armiesLeft(0)
 	, timebank(0)
@@ -44,21 +48,7 @@ void Bot::makeMoves()
         moves.push_back(move.str());
     }
 
-    // TODO: use boost::join here as soon the server allows it
-    std::stringstream finalMoves;
-    for(size_t i = 0; i < moves.size(); ++i)
-    {
-        finalMoves << moves[i];
-        if(i + 1 == moves.size())
-        {
-            finalMoves << std::endl;
-        }
-        else
-        {
-            finalMoves << ",";
-        }
-    }
-    std::cout << finalMoves.str();
+    std::cout << boost::algorithm::join(moves, ",");
 }
 
 void Bot::addRegion(const unsigned& noRegion, const unsigned& noSuperRegion)
