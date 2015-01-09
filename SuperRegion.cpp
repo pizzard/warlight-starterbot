@@ -18,5 +18,4 @@ SuperRegion::~SuperRegion()
 void SuperRegion::addRegion(const int& region)
 {
 	regions.push_back(region);
-
 }

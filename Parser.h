@@ -11,7 +11,7 @@
 
 class Bot;
 
-class Parser : boost::noncopyable
+class Parser: boost::noncopyable
 {
 public:
 	Parser(Bot* bot);
@@ -29,14 +29,14 @@ public:
 	void parsePickStartingRegion();
 	void parseOpponentStartingRegions();
 	void parseNeighbors();
-    void parseWastelands();
+	void parseWastelands();
 
 private:
-    Parser();
+	Parser();
 	Bot* theBot;
 
 	// helper function for the case we want to handle \r\n in future
-	inline bool lineEnds() { return bool(std::cin.peek() == '\n'); }
+	inline bool lineEnds(){ return bool(std::cin.peek() == '\n'); }
 
 };
 

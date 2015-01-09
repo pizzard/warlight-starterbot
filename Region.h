@@ -20,11 +20,11 @@ public:
 	inline std::string getOwner() { return owner; }
 	inline int getSuperRegion() { return superRegion; }
 	int getNeighbor(const size_t& index);
-    int getNbNeighbors();
+	int getNbNeighbors();
 
 private:
 	std::vector<int> neighbors;
-    int id;
+	int id;
 	int superRegion;
 	std::string owner;
 	int armies;

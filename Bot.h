@@ -16,15 +16,13 @@
 // tools
 #include "tools/noncopyable.hpp"
 
-class Bot : boost::noncopyable
+class Bot: boost::noncopyable
 {
 
 public:
-	enum Phase {
-		NONE,
-		PICK_STARTING_REGION,
-		PLACE_ARMIES,
-		ATTACK_TRANSFER
+	enum Phase
+	{
+		NONE, PICK_STARTING_REGION, PLACE_ARMIES, ATTACK_TRANSFER
 	};
 
 	Bot();
@@ -36,19 +34,18 @@ public:
 	void placeArmies();
 	void makeMoves();   ///< makes moves for a single turn
 
-
 	void addRegion(const unsigned& noRegion, const unsigned& noSuperRegion);
 	void addSuperRegion(const unsigned& noSuperRegion, const int& reward);
 	void addNeighbors(const unsigned& noRegion, const unsigned& Neighbors);
-    void addWasteland(const unsigned& noRegion);
+	void addWasteland(const unsigned& noRegion);
 
-    /// Setters for settings
+	/// Setters for settings
 	void setBotName(const std::string& name);
 	void setOpponentBotName(const std::string& name);
 	void setArmiesLeft(const int& nbArmies);
-    void setTimebank(const int& newTimebank);
-    void setTimePerMove(const int& newTimePerMove);
-    void setMaxRounds(const int&  newMaxRounds);
+	void setTimebank(const int& newTimebank);
+	void setTimePerMove(const int& newTimePerMove);
+	void setMaxRounds(const int& newMaxRounds);
 
 	/**
 	 * Adds armies to a region
@@ -64,14 +61,13 @@ public:
 	 */
 	void moveArmies(const unsigned& noRegion, const unsigned& toRegion, const int& nbArmies);
 
-    void clearStartingRegions();
+	void clearStartingRegions();
 	void addStartingRegion(const unsigned& noRegion);
-
 
 	void addOpponentStartingRegion(const unsigned& noRegion);
 
-    void opponentPlacement(const unsigned& noRegion, const int& nbArmies);
-    void opponentMovement(const unsigned& noRegion, const unsigned& toRegion, const int& nbArmies);
+	void opponentPlacement(const unsigned& noRegion, const int& nbArmies);
+	void opponentMovement(const unsigned& noRegion, const unsigned& toRegion, const int& nbArmies);
 
 	void startDelay(const int& delay);
 
@@ -102,11 +98,11 @@ private:
 	std::vector<int> startingRegionsreceived;
 	std::vector<unsigned> opponentStartingRegions;
 	std::vector<int> ownedRegions;
-    std::vector<int> wastelands;
+	std::vector<int> wastelands;
 	int armiesLeft;
-    int timebank;
-    int timePerMove;
-    int maxRounds;
+	int timebank;
+	int timePerMove;
+	int maxRounds;
 	Parser parser;
 	Phase phase;
 };
