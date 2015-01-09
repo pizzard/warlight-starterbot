@@ -22,8 +22,7 @@ class Bot : boost::noncopyable
 public:
 	enum Phase {
 		NONE,
-		PICK_PREFERRED_REGION,
-		FIND_BORDERS,
+		PICK_STARTING_REGION,
 		PLACE_ARMIES,
 		ATTACK_TRANSFER
 	};
@@ -63,6 +62,9 @@ public:
 
     void clearStartingRegions();
 	void addStartingRegion(const unsigned& noRegion);
+	void pickStartingRegion();
+
+	void addOpponentStartingRegion(const unsigned& noRegion);
 
     void opponentPlacement(const unsigned& noRegion, const int& nbArmies);
     void opponentMovement(const unsigned& noRegion, const unsigned& toRegion, const int& nbArmies);
@@ -94,6 +96,7 @@ private:
 	std::string botName;
 	std::string opponentBotName;
 	std::vector<int> startingRegionsreceived;
+	std::vector<unsigned> opponentStartingRegions;
 	std::vector<int> ownedRegions;
     std::vector<int> wastelands;
 	int armiesLeft;

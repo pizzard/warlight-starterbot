@@ -27,14 +27,14 @@ void Parser::parseInput()
 	{
 		if (inputType == "setup_map")
 			parseSetupMap();
-        else if (inputType == "pick_starting_region")
-			parseStartingRegions();
 		else if (inputType == "settings")
 			parseSettings();
 		else if (inputType == "update_map")
 			parseUpdateMap();
 		else if (inputType == "opponent_moves")
 			parseOpponentMoves();
+        else if (inputType == "pick_starting_region")
+			parsePickStartingRegion();
 		else if (inputType == "go")
 			parseGo();
 		theBot->executeAction();
@@ -47,34 +47,40 @@ void Parser::parseSetupMap()
 	std::cin >> setupType;
 	if (setupType == "super_regions")
 		parseSuperRegions();
-    else if (setupType == "regions")
+	else if (setupType == "regions")
 		parseRegions();
-    else if (setupType == "neighbors")
+	else if (setupType == "neighbors")
 		parseNeighbors();
-    else if (setupType == "wastelands")
-        parseWastelands();
+	else if (setupType == "wastelands")
+		parseWastelands();
+	else if (setupType == "opponent_starting_regions")
+		parseOpponentStartingRegions();
 }
-void Parser::parseStartingRegions()
-{
-	int region;
-	int delay;
-	std::cin >> delay;
-	theBot->startDelay(delay);
-    theBot->clearStartingRegions();
-	while (std::cin >> region)
-	{
-		theBot->addStartingRegion(region);
-		if (std::cin.peek() == '\n')
-			break;
-	}
-	theBot->setPhase(Bot::PICK_PREFERRED_REGION);
-}
+
 
 void Parser::parseSettings()
 {
 	std::string settingType;
 	std::cin >> settingType;
-	if (settingType == "your_bot")
+     if (settingType == "timebank")
+    {
+        int timebank;
+        std::cin >> timebank;
+        theBot->setTimebank(timebank);
+    }
+     else if (settingType == "time_per_move")
+     {
+         int timePerMove;
+         std::cin >> timePerMove;
+         theBot->setTimePerMove(timePerMove);
+     }
+     else if (settingType == "max_rounds")
+     {
+         int maxRounds;
+         std::cin >> maxRounds;
+         theBot->setMaxRounds(maxRounds);
+     }
+     else if (settingType == "your_bot")
 	{
         std::string bot_name;
 		std::cin >> bot_name;
@@ -92,24 +98,16 @@ void Parser::parseSettings()
 		std::cin >> nbArmies;
 		theBot->setArmiesLeft(nbArmies);
 	}
-    else if (settingType == "timebank")
-    {
-        int timebank;
-        std::cin >> timebank;
-        theBot->setTimebank(timebank);
-    }
-    else if (settingType == "time_per_move")
-    {
-        int timePerMove;
-        std::cin >> timePerMove;
-        theBot->setTimePerMove(timePerMove);
-    }
-    else if (settingType == "max_rounds")
-    {
-        int maxRounds;
-        std::cin >> maxRounds;
-        theBot->setMaxRounds(maxRounds);
-    }
+    else if (settingType == "starting_regions")
+	{
+    	unsigned noRegion;
+    	while (std::cin >> noRegion)
+    	{
+    		theBot->addStartingRegion(noRegion);
+    		if (std::cin.peek() == '\n')
+    			break;
+    	}
+	}
 }
 
 void Parser::parseUpdateMap()
@@ -165,16 +163,6 @@ void Parser::parseGo()
 		theBot->setPhase(Bot::ATTACK_TRANSFER);
 		return;
 	}
-	if(phase == "find_borders")
-	{
-		theBot->setPhase(Bot::FIND_BORDERS);
-		return;
-	}
-	if(phase ==  "pick_preferred_region")
-	{
-		theBot->setPhase(Bot::PICK_PREFERRED_REGION);
-		return;
-	}
 	throw std::invalid_argument("Cannot handle " + phase + "correctly");
 }
 
@@ -201,6 +189,33 @@ void Parser::parseRegions()
 	}
 }
 
+void Parser::parsePickStartingRegion()
+{
+	int region;
+	int delay;
+	std::cin >> delay;
+	theBot->startDelay(delay);
+    theBot->clearStartingRegions();
+	while (std::cin >> region)
+	{
+		theBot->addStartingRegion(region);
+		if (std::cin.peek() == '\n')
+			break;
+	}
+	theBot->setPhase(Bot::PICK_STARTING_REGION);
+}
+
+void Parser::parseOpponentStartingRegions()
+{
+	unsigned noRegion;
+	while (std::cin >> noRegion)
+	{
+		theBot->addOpponentStartingRegion(noRegion);
+		if (std::cin.peek() == '\n')
+			break;
+	}
+}
+
 void Parser::parseNeighbors()
 {
 
@@ -216,7 +231,8 @@ void Parser::parseNeighbors()
 			break;
 	}
 	neighbors_flds.clear();
-	theBot->setPhase(Bot::FIND_BORDERS);
+	// TODO:
+	//theBot->setPhase(Bot::FIND_BORDERS);
 }
 
 void Parser::parseWastelands()

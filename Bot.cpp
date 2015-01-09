@@ -113,6 +113,14 @@ void Bot::addStartingRegion(const unsigned& noRegion)
     startingRegionsreceived.push_back(noRegion);
 }
 
+void Bot::pickStartingRegion()
+{
+    std::cout << startingRegionsreceived.front() << "\n";
+}
+void Bot::addOpponentStartingRegion(const unsigned& noRegion)
+{
+	opponentStartingRegions.push_back(noRegion);
+}
 void Bot::opponentPlacement(const unsigned & noRegion, const int & nbArmies)
 {
 	// suppress unused variable warnings
@@ -145,9 +153,9 @@ void Bot::executeAction()
 {
 	if (phase == NONE)
 		return;
-    if (phase == Bot::PICK_PREFERRED_REGION)
+    if (phase == Bot::PICK_STARTING_REGION)
 	{
-        std::cout << startingRegionsreceived.front() << "\n";
+        pickStartingRegion();
 	}
 	if (phase == Bot::PLACE_ARMIES)
 	{

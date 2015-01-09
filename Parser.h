@@ -26,6 +26,8 @@ public:
 	void parseGo();
 	void parseSuperRegions();
 	void parseRegions();
+	void parsePickStartingRegion();
+	void parseOpponentStartingRegions();
 	void parseNeighbors();
     void parseWastelands();
 
