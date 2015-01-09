@@ -32,7 +32,11 @@ public:
 
 	void playGame();    ///< plays a single game of Warlight
 
+	void pickStartingRegion();
+	void placeArmies();
 	void makeMoves();   ///< makes moves for a single turn
+
+
 	void addRegion(const unsigned& noRegion, const unsigned& noSuperRegion);
 	void addSuperRegion(const unsigned& noSuperRegion, const int& reward);
 	void addNeighbors(const unsigned& noRegion, const unsigned& Neighbors);
@@ -62,7 +66,7 @@ public:
 
     void clearStartingRegions();
 	void addStartingRegion(const unsigned& noRegion);
-	void pickStartingRegion();
+
 
 	void addOpponentStartingRegion(const unsigned& noRegion);
 

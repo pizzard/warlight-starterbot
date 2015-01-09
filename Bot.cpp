@@ -29,10 +29,29 @@ void Bot::playGame()
 	parser.parseInput();
 }
 
+
+void Bot::pickStartingRegion()
+{
+    std::cout << startingRegionsreceived.front() << std::endl;
+}
+
+
+void Bot::placeArmies()
+{
+    std::cout
+    	<< botName
+    	<< " place_armies "
+    	<< ownedRegions[std::rand() % ownedRegions.size()]
+    	<< " "
+    	<< armiesLeft
+    	<< std::endl;
+    addArmies(ownedRegions[0], armiesLeft);
+}
+
 void Bot::makeMoves()
 {
     /// Output No moves when you have no time left or do not want to commit any moves.
-    // std::cout << "No moves\n";
+    // std::cout << "No moves "  << std::endl;
     /// Anatomy of a single move
     //  std::cout << botName << " attack/transfer " << from << " " << to << " "<< armiesMoved;
     /// When outputting multiple moves they must be seperated by a comma
@@ -43,12 +62,19 @@ void Bot::makeMoves()
         int i = ownedRegions[j];
         if(regions[i].getArmies() > 1)
         {
-            move << botName << " attack/transfer " << i << " " << regions[i].getNeighbor(std::rand() % regions[i].getNbNeighbors()) << " "<< (regions[i].getArmies()-1);
+            move
+            	<< botName
+            	<< " attack/transfer "
+            	<< i
+            	<< " "
+            	<< regions[i].getNeighbor(std::rand() % regions[i].getNbNeighbors())
+            	<< " "
+            	<< (regions[i].getArmies()-1);
         }
         moves.push_back(move.str());
     }
 
-    std::cout << string::join(moves);
+    std::cout << string::join(moves) << std::endl;
 }
 
 void Bot::addRegion(const unsigned& noRegion, const unsigned& noSuperRegion)
@@ -113,10 +139,6 @@ void Bot::addStartingRegion(const unsigned& noRegion)
     startingRegionsreceived.push_back(noRegion);
 }
 
-void Bot::pickStartingRegion()
-{
-    std::cout << startingRegionsreceived.front() << "\n";
-}
 void Bot::addOpponentStartingRegion(const unsigned& noRegion)
 {
 	opponentStartingRegions.push_back(noRegion);
@@ -157,12 +179,11 @@ void Bot::executeAction()
 	{
         pickStartingRegion();
 	}
-	if (phase == Bot::PLACE_ARMIES)
+    else if (phase == Bot::PLACE_ARMIES)
 	{
-        std::cout << botName << " place_armies " << ownedRegions[std::rand() % ownedRegions.size()] << " " << armiesLeft << "\n";
-        addArmies(ownedRegions[0], armiesLeft);
+		placeArmies();
 	}
-	if (phase == Bot::ATTACK_TRANSFER )
+    else if (phase == Bot::ATTACK_TRANSFER )
 	{
         makeMoves();
 	}
