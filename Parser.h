@@ -9,7 +9,6 @@
 // tools
 #include "tools/noncopyable.hpp"
 
-
 class Bot;
 
 class Parser : boost::noncopyable

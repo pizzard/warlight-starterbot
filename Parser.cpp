@@ -11,8 +11,6 @@
 // tools
 #include "tools/StringManipulation.h"
 
-
-
 Parser::Parser(Bot* bot)
 	:theBot(bot)
 {
