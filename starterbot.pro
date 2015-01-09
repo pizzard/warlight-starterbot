@@ -14,7 +14,7 @@ zip.target = zip
 zip.commands = rm -f bot.zip && mkdir -p target \
 	&& cp -r $$PWD/*.h target/ \
 	&& cp -r $$PWD/*.cpp  target/ \
-	&& cp -r $$PWD/3rdparty/ target/ \
+	&& cp -r $$PWD/tools/ target/ \
 	&& cd target \
 	&& zip -r ../bot.zip ./* \
 	&& cd .. \
