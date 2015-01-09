@@ -35,6 +35,9 @@ private:
     Parser();
 	Bot* theBot;
 
+	// helper function for the case we want to handle \r\n in future
+	inline bool lineEnds() { return bool(std::cin.peek() == '\n'); }
+
 };
 
 #endif // PARSER_H_INCLUDED
