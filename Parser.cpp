@@ -37,6 +37,13 @@ void Parser::parseInput()
 			parsePickStartingRegion();
 		else if (inputType == "go")
 			parseGo();
+		else
+		{
+			std::string line;
+			getline(std::cin, line);
+			std::cout << "Could not parse: " << inputType << " " << line << std::endl;
+		}
+
 		theBot->executeAction();
 	}
 }
@@ -104,7 +111,7 @@ void Parser::parseSettings()
     	while (std::cin >> noRegion)
     	{
     		theBot->addStartingRegion(noRegion);
-    		if (std::cin.peek() == '\n')
+    		if (lineEnds())
     			break;
     	}
 	}
@@ -119,7 +126,7 @@ void Parser::parseUpdateMap()
 	while (std::cin >> noRegion >> playerName >> nbArmies)
 	{
 		theBot->updateRegion(noRegion, playerName, nbArmies);
-		if (std::cin.peek() == '\n')
+		if (lineEnds())
 			break;
 	}
 }
@@ -142,7 +149,7 @@ void Parser::parseOpponentMoves()
 			std::cin >> noRegion >> toRegion >> nbArmies;
             theBot->opponentMovement(noRegion, toRegion, nbArmies);
 		}
-		if (std::cin.peek() == '\n')
+		if (lineEnds())
 			break;
 	}
 }
@@ -173,7 +180,7 @@ void Parser::parseSuperRegions()
 	while (std::cin >> super >> reward)
 	{
 		theBot->addSuperRegion(super, reward);
-		if (std::cin.peek() == '\n')
+		if (lineEnds())
 			break;
 	}
 }
@@ -184,7 +191,7 @@ void Parser::parseRegions()
 	while (std::cin >> region >> super)
 	{
 		theBot->addRegion(region, super);
-		if (std::cin.peek() == '\n')
+		if (lineEnds())
 			break;
 	}
 }
@@ -199,7 +206,7 @@ void Parser::parsePickStartingRegion()
 	while (std::cin >> region)
 	{
 		theBot->addStartingRegion(region);
-		if (std::cin.peek() == '\n')
+		if (lineEnds())
 			break;
 	}
 	theBot->setPhase(Bot::PICK_STARTING_REGION);
@@ -211,7 +218,7 @@ void Parser::parseOpponentStartingRegions()
 	while (std::cin >> noRegion)
 	{
 		theBot->addOpponentStartingRegion(noRegion);
-		if (std::cin.peek() == '\n')
+		if (lineEnds())
 			break;
 	}
 }
@@ -227,7 +234,7 @@ void Parser::parseNeighbors()
 		string::split(neighbors_flds, neighbors);
 		for (unsigned i = 0; i < neighbors_flds.size(); i++)
 			theBot->addNeighbors(region, atoi(neighbors_flds[i].c_str()));
-		if (std::cin.peek() == '\n')
+		if (lineEnds())
 			break;
 	}
 	neighbors_flds.clear();
@@ -241,7 +248,7 @@ void Parser::parseWastelands()
     while(std::cin >> region)
     {
         theBot->addWasteland(region);
-        if (std::cin.peek()== '\n')
+        if (lineEnds())
             break;
     }
 }

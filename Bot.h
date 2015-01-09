@@ -93,6 +93,8 @@ public:
 	void resetRegionsOwned();
 
 private:
+	// helper function for the case we want to handle \r\n in future
+	inline bool lineEnds() { return bool(std::cin.peek() == '\n'); }
 	std::ifstream in;
 
 	std::vector<Region> regions;
