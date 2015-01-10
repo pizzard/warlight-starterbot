@@ -20,7 +20,7 @@ Getting the Bot
 
 Either clone the bot with 
 ```
-	git clone https://github.com/pizzard/warlight-starterbot.git your-bot-dir
+git clone https://github.com/pizzard/warlight-starterbot.git your-bot-dir
 ```
 or download the zip file at 
 https://github.com/pizzard/warlight-starterbot/archive/master.zip
@@ -69,9 +69,9 @@ for a qt5-qmake standalone package.
 
 Then just go to the source directory of your bot.
 ```bash
-	mkdir -p build # creates the build dir
-	cd build
-	qmake-qt5 ../starterbot.pro #creates your Makefile
+mkdir -p build # creates the build dir
+cd build
+qmake-qt5 ../starterbot.pro #creates your Makefile
 ```
 (you might want to rename the .pro file in advance to reflect the name of your cool bot, heh ;-))
 Then you can build your bot with 
@@ -90,21 +90,21 @@ Once you successfully built your bot you will want to test your bot.
 The first very basicv test ist just run it from sour src dir with:
 (you can change the executeable name in the .pro file by changing the TARGET variable)
 ```bash
-    ./build/starterbot
+./build/starterbot
 ```
 Now your bot should be running and will expect input from you over standard input,
 test typing something
 ```
-    test
+test
 ```
 then your bot will answer
 ```
-    test
+test
 ```
 because the parser just prints back an input it does not recognize.
 If you give it a valid engine command, e.g.
 ```
-    settings timebank 10000
+settings timebank 10000
 ```
 It will parse that and in this case give no response.
 
@@ -112,7 +112,7 @@ If this works, you can let the bot play a simulated game.
 Therefore under testgames/, there are some tesgames where the complete engine output is captured
 you can run your bot with them using
 ```bash
-    cat testgames/testmatch.game | ./build/starterbot 
+cat testgames/testmatch.game | ./build/starterbot 
 ```
 Then you see the complete output of your bot for that game.
 
@@ -126,7 +126,7 @@ Compete!
 If you done local testing and want to see your bot online, go into the build directory of your bot
 and use
 ```bash
-    make zip
+make zip
 ```
 to create a zip file.
 
@@ -141,7 +141,7 @@ On the server there are 5 phases:
  5. Test Game
 
 You can access the output of all phases there.
-If all this works to your staisfaction, select your current vorsion from the list and click set
+If all this works to your statisfaction, select your current version from the list and click set
 to add it to the Challenge.
 
 CAUTION: When you first add a bot, it needs to be added into the match queue, this can take several hours.
