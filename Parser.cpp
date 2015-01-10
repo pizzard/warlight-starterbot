@@ -41,7 +41,7 @@ void Parser::parseInput()
 		{
 			std::string line;
 			getline(std::cin, line);
-			std::cout << "Could not parse: " << inputType << " " << line << std::endl;
+			std::cerr  << inputType << " " << line << std::endl;
 		}
 
 		theBot->executeAction();
@@ -230,13 +230,13 @@ void Parser::parseNeighbors()
 	std::vector<std::string> neighbors_flds;
 	while (std::cin >> region >> neighbors)
 	{
+		neighbors_flds.clear();
 		string::split(neighbors_flds, neighbors);
 		for (unsigned i = 0; i < neighbors_flds.size(); i++)
 			theBot->addNeighbors(region, atoi(neighbors_flds[i].c_str()));
 		if (lineEnds())
 			break;
 	}
-	neighbors_flds.clear();
 	// TODO:
 	//theBot->setPhase(Bot::FIND_BORDERS);
 }

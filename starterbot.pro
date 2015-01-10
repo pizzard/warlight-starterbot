@@ -6,7 +6,7 @@ QT -= core gui
 TEMPLATE = app
 TARGET = starterbot
 INCLUDEPATH = .
-CONFIG += c++11
+CONFIG += c++11 debug
 QMAKE_CXXFLAGS_DEBUG +=  -DSTARTERBOT_DEBUG
 
 # add tagret to zip your bot
