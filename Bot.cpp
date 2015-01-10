@@ -30,9 +30,10 @@ void Bot::pickStartingRegion()
 
 void Bot::placeArmies()
 {
-	std::cout << botName << " place_armies " << ownedRegions[std::rand() % ownedRegions.size()] << " " << armiesLeft
+	unsigned region = std::rand() % ownedRegions.size();
+	std::cout << botName << " place_armies " << ownedRegions[region] << " " << armiesLeft
 			<< std::endl;
-	addArmies(ownedRegions[0], armiesLeft);
+	addArmies(ownedRegions[region], armiesLeft);
 }
 
 void Bot::makeMoves()
