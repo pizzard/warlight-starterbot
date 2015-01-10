@@ -29,21 +29,21 @@ https://github.com/pizzard/warlight-starterbot/archive/master.zip
 Getting Started
 ---------------
 
-When you got the bt, gets right into it.
-The bot comes in a set of Header and source files, all in your current source dir.
+The bot comes in a set of Header and source files, all in your current source dir and 
+a sudirectory tools/ for helper classes and tools.
 There are currently 4 classes:
  * Bot: handles game interaction and if basically the meat of your bot
  * Parser: handle communication of the game engine
  * Region and SuperRegion: data representation of the Map
 
 To get started first skim around (especialls in the headers of Region, SuperRegion and Bot
-to see what information you have and how.
+to see what information you have and how its accessed)
 
-Then when you want start implmenting bot behavoiur, find 
+Then when you want start implementing bot behavoiur, find 
 ```c++
-	void Bot::pickStartingRegion()
-	void Bot::placeArmies()
-	void Bot::makeMoves()
+void Bot::pickStartingRegion() { ... }
+void Bot::placeArmies() { ... }
+void Bot::makeMoves() { ... }
 ```
 methods in Bot.cpp.
 
@@ -56,7 +56,7 @@ Building
 For the challenge you don't need to build your bot, you can just upload it.
 But for the convienience of local testing it is highly recommended to do so.
 
-This describes the build environment used on linux, you can use a build envirenment of you choice.
+This describes the build environment used on linux, you can use a build envirenment of your choice.
 
 Requirements are:
  * Current c++ compiler e.g. g++ >= 4.7 (engine on server uses g++ 4.9 with -std=c++14)
@@ -68,22 +68,20 @@ You don't need to install the whole QT5 framework, the bot does not use it, just
 for a qt5-qmake standalone package.
 
 Then just go to the source directory of your bot.
-First create a build directory, e.g.
 ```bash
-	mkdir -p build
+	mkdir -p build # creates the build dir
 	cd build
-```
-Then create the Makefile using qmake
-```bash
-	qmake-qt5 ../starterbot.pro
+	qmake-qt5 ../starterbot.pro #creates your Makefile
 ```
 (you might want to rename the .pro file in advance to reflect the name of your cool bot, heh ;-))
-Then you can build your bot with make all or just make
+Then you can build your bot with 
+```bash
+make all 
+```
+or just make
 
 Because you mostly will use your local builds for testing your bot is by default created with debug 
-symbols enabled, ready to use with e.g. gdb or valgrind.
-
-
+symbols enabled, ready to use with e.g. gdb or valgrind. Also all warnings are on.
 
 Testing locally
 ---------------
@@ -91,20 +89,27 @@ Testing locally
 Once you successfully built your bot you will want to test your bot.
 The first very basicv test ist just run it from sour src dir with:
 (you can change the executeable name in the .pro file by changing the TARGET variable)
+```bash
     ./build/starterbot
+```
 Now your bot should be running and will expect input from you over standard input,
 test typing something
+```
     test
+```
 then your bot will answer
+```
     test
+```
 because the parser just prints back an input it does not recognize.
 If you give it a valid engine command, e.g.
+```
     settings timebank 10000
+```
 It will parse that and in this case give no response.
 
 If this works, you can let the bot play a simulated game.
-Therefore under testgames/, there are some tesgames where i captured the complete engine output 
-of a game.
+Therefore under testgames/, there are some tesgames where the complete engine output is captured
 you can run your bot with them using
 ```bash
     cat testgames/testmatch.game | ./build/starterbot 
@@ -120,20 +125,23 @@ Compete!
 --------
 If you done local testing and want to see your bot online, go into the build directory of your bot
 and use
+```bash
     make zip
+```
 to create a zip file.
+
 Then go to http://theaigames.com/profile, select Warlight AI Challenge 2 if neccessary and upload
 your zip file there.
 
 On the server there are 5 phases:
-1. Upload
-2. Compilation Queue
-3. Compiling 
-4. Simple Input Test
-5. Test Game
+ 1. Upload
+ 2. Compilation Queue
+ 3. Compiling 
+ 4. Simple Input Test
+ 5. Test Game
 
 You can access the output of all phases there.
-If all this works to your staisfaction, select you current vorsion from the list and click set
+If all this works to your staisfaction, select your current vorsion from the list and click set
 to add it to the Challenge.
 
 CAUTION: When you first add a bot, it needs to be added into the match queue, this can take several hours.
@@ -146,11 +154,13 @@ Advanced Debugging
 
 If your bots behaviour is strictly deterministic (which is often prefereable and certainly not true
 for the starterbot) you can debug games as follows:
-Locally build the same bot as currently in the competition.
-Get the dump from the game you are interested in, (adding /dump the URL does the job) and save it to 
-a file
+
+Locally build the same bot as currently in the competition. 
+Get the dump from the game you are interested in, (adding /dump the URL does the job) and save it to a file.
+
 Fire up your debugger and specifiy breakpoints where useful, e.g. in your move logic.
 Then run the bot with your game file as above.
+
 Because you not get the same inputs your bot will do the same moves as in the real game, but know
 you can observe the deciision process instruction by instruction.
 This is some work to set up, but if classical printf debugging doesn't help you any more, its a very 
