@@ -1,10 +1,11 @@
 #ifndef SUPERREGION_H_INCLUDED
 #define SUPERREGION_H_INCLUDED
 
-//stl
+// stl
 #include <vector>
 
-//project
+// project
+#include "main.h"
 #include "Region.h"
 
 class SuperRegion

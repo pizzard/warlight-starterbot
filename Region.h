@@ -5,6 +5,9 @@
 #include <vector>
 #include <string>
 
+// project
+#include "main.h"
+
 class Region
 {
 public:
@@ -14,19 +17,19 @@ public:
 
 	void addNeighbor(const int& neighbor);
 	void setArmies(const int& nbArmies) { armies = nbArmies; }
-	void setOwner(const std::string& pOwner){ owner = pOwner; }
+	void setOwner(const Player& pOwner){ owner = pOwner; }
 
-	inline int getArmies() { return armies; }
-	inline std::string getOwner() { return owner; }
-	inline int getSuperRegion() { return superRegion; }
-	int getNeighbor(const size_t& index);
-	int getNbNeighbors();
+	inline int getArmies() const { return armies; }
+	inline Player getOwner() const { return owner; }
+	inline int getSuperRegion() const { return superRegion; }
+	int getNeighbor(const size_t& index) const ;
+	int getNbNeighbors() const;
 
 private:
 	std::vector<int> neighbors;
 	int id;
 	int superRegion;
-	std::string owner;
+	Player owner;
 	int armies;
 };
 

@@ -50,8 +50,16 @@ void Bot::makeMoves()
 		int i = ownedRegions[j];
 		if (regions[i].getArmies() <= 1)
 			continue;
+
+		int target = regions[i].getNeighbor(std::rand() % regions[i].getNbNeighbors());
+		// prefer enemy regions
+		for ( unsigned k = 0; k < 5; ++k)
+		{
+			if(regions[target].getOwner() != ME) break;
+			target = regions[i].getNeighbor(std::rand() % regions[i].getNbNeighbors());
+		}
 		move << botName << " attack/transfer " << i << " "
-				<< regions[i].getNeighbor(std::rand() % regions[i].getNbNeighbors()) << " "
+				<< target << " "
 				<< (regions[i].getArmies() - 1);
 		moves.push_back(move.str());
 	}
@@ -172,11 +180,18 @@ void Bot::executeAction()
 	phase = NONE;
 }
 
-void Bot::updateRegion(const unsigned& noRegion, const std::string& playerName, const int& nbArmies)
+void Bot::updateRegion(const unsigned& noRegion, const  std::string& playerName, const int& nbArmies)
 {
-	regions[noRegion].setArmies(nbArmies);
-	regions[noRegion].setOwner(playerName);
+	Player owner;
 	if (playerName == botName)
+		owner = ME;
+	else if (playerName == opponentBotName)
+		owner = ENEMY;
+	else
+		owner = NEUTRAL;
+	regions[noRegion].setArmies(nbArmies);
+	regions[noRegion].setOwner(owner);
+	if (owner == ME)
 		ownedRegions.push_back(noRegion);
 }
 void Bot::addArmies(const unsigned& noRegion, const int& nbArmies)

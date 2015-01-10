@@ -9,12 +9,12 @@
 #include <sstream>
 
 // project
+#include "main.h"
 #include "Parser.h"
 #include "Region.h"
 #include "SuperRegion.h"
 
-// tools
-#include "tools/noncopyable.hpp"
+
 
 class Bot: boost::noncopyable
 {
@@ -90,7 +90,6 @@ public:
 
 private:
 	std::ifstream in;
-
 	std::vector<Region> regions;
 	std::vector<SuperRegion> superRegions;
 	std::string botName;

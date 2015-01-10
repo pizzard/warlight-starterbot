@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 
-// tools
-#include "tools/noncopyable.hpp"
+// project
+#include "main.h"
 
 class Bot;
 
