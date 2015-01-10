@@ -19,7 +19,9 @@ Getting the Bot
 ---------------
 
 Either clone the bot with 
+```
 	git clone https://github.com/pizzard/warlight-starterbot.git your-bot-dir
+```
 or download the zip file at 
 https://github.com/pizzard/warlight-starterbot/archive/master.zip
 
@@ -38,9 +40,11 @@ To get started first skim around (especialls in the headers of Region, SuperRegi
 to see what information you have and how.
 
 Then when you want start implmenting bot behavoiur, find 
+```c++
 	void Bot::pickStartingRegion()
 	void Bot::placeArmies()
 	void Bot::makeMoves()
+```
 methods in Bot.cpp.
 
 Start adding your own logic on how to move and your own game logic there.
@@ -65,15 +69,16 @@ for a qt5-qmake standalone package.
 
 Then just go to the source directory of your bot.
 First create a build directory, e.g.
+```bash
 	mkdir -p build
 	cd build
+```
 Then create the Makefile using qmake
+```bash
 	qmake-qt5 ../starterbot.pro
+```
 (you might want to rename the .pro file in advance to reflect the name of your cool bot, heh ;-))
-Then you can build your bot with
-	make all
-or just 
-	make
+Then you can build your bot with make all or just make
 
 Because you mostly will use your local builds for testing your bot is by default created with debug 
 symbols enabled, ready to use with e.g. gdb or valgrind.
@@ -85,23 +90,25 @@ Testing locally
 
 Once you successfully built your bot you will want to test your bot.
 The first very basicv test ist just run it from sour src dir with:
-	./build/starterbot
 (you can change the executeable name in the .pro file by changing the TARGET variable)
-Now your bot shlud be running and will expect input from you over standard input,
+    ./build/starterbot
+Now your bot should be running and will expect input from you over standard input,
 test typing something
-	test
+    test
 then your bot will answer
-	test
+    test
 because the parser just prints back an input it does not recognize.
 If you give it a valid engine command, e.g.
-	settings timebank 10000
+    settings timebank 10000
 It will parse that and in this case give no response.
 
 If this works, you can let the bot play a simulated game.
 Therefore under testgames/, there are some tesgames where i captured the complete engine output 
 of a game.
 you can run your bot with them using
-	./build/starterbot &lt; testgames/testmatch.game
+```bash
+    cat testgames/testmatch.game | ./build/starterbot 
+```
 Then you see the complete output of your bot for that game.
 
 CAVEAT: The "engine" does in this case not really react to your moves and if
@@ -113,7 +120,7 @@ Compete!
 --------
 If you done local testing and want to see your bot online, go into the build directory of your bot
 and use
-	make zip
+    make zip
 to create a zip file.
 Then go to http://theaigames.com/profile, select Warlight AI Challenge 2 if neccessary and upload
 your zip file there.
