@@ -25,11 +25,13 @@ void Bot::playGame()
 
 void Bot::pickStartingRegion()
 {
+	// START HERE!
 	std::cout << startingRegionsreceived.front() << std::endl;
 }
 
 void Bot::placeArmies()
 {
+	// START HERE!
 	unsigned region = std::rand() % ownedRegions.size();
 	std::cout << botName << " place_armies " << ownedRegions[region] << " " << armiesLeft
 			<< std::endl;
@@ -38,6 +40,7 @@ void Bot::placeArmies()
 
 void Bot::makeMoves()
 {
+	// START HERE!
 	/// Output No moves when you have no time left or do not want to commit any moves.
 	// std::cout << "No moves "  << std::endl;
 	/// Anatomy of a single move
