@@ -155,11 +155,12 @@ Advanced Debugging
 If your bots behaviour is strictly deterministic (which is often prefereable and certainly not true
 for the starterbot) you can debug games as follows:
 
-Locally build the same bot as currently in the competition. 
-Get the dump from the game you are interested in, (adding /dump the URL does the job) and save it to a file.
-
-Fire up your debugger and specifiy breakpoints where useful, e.g. in your move logic.
-Then run the bot with your game file as above.
+ * Locally build the same bot as currently in the competition. 
+ * Get the dump from the game you are interested in. (adding /dump the URL does the job) 
+ * Save it to a file. (you don't need to clean it up, the bot will ignore all other stuff in there)
+ * Fire up your debugger with your bot
+ * Specifiy breakpoints where useful, e.g. in your move logic.
+ * Run the bot with your game file as above.
 
 Because you not get the same inputs your bot will do the same moves as in the real game, but know
 you can observe the deciision process instruction by instruction.
